@@ -33,8 +33,10 @@ optional = true
 version = "~0"
 
 [dependencies.openssl]
+git = "https://github.com/Devolutions/rust-openssl.git"
+branch = "wayk"
 optional = true
-version = "0.10.15"
+version = "0.10"
 
 [dependencies.textnonce]
 default-features = false
