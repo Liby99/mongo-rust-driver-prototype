@@ -2,7 +2,7 @@
 use std::collections::VecDeque;
 use std::fmt;
 use std::sync::{Arc, Condvar, Mutex};
-use std::sync::atomic::{ATOMIC_USIZE_INIT, AtomicUsize, Ordering};
+use std::sync::atomic::{AtomicUsize, Ordering};
 use std::time::{Duration, Instant};
 
 use bson::{bson, doc};
@@ -114,7 +114,8 @@ impl ConnectionPool {
             host,
             wait_lock: Arc::new(Condvar::new()),
             inner: Arc::new(Mutex::new(Pool {
-                len: Arc::new(ATOMIC_USIZE_INIT),
+
+                len: Arc::new(AtomicUsize::new(0)),
                 size,
                 sockets: VecDeque::with_capacity(size),
                 iteration: 0,
